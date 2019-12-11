@@ -9,7 +9,7 @@ $code = @'
     [DllImport("User32.dll")]
     public extern static bool MoveWindow(IntPtr handle, int x, int y, int width, int height, bool redraw);
 '@
-Add-Type $code -Name Utils -Namespace Win32 -ReferencedAssemblies System.Drawing
+Add-Type $code -Name Utils -Namespace Win32 -IgnoreWarnings -ReferencedAssemblies System.Drawing
 
 Sleep 3
 While($True)
