@@ -15,15 +15,41 @@ Sleep 3
 While($True)
 {
     $Weight = 15
-    If($Weight % 2){$Weight++}
 
     $ChangeX = (Get-Random -Min ($Weight * -1) -Max $Weight)
+    If($ChangeX -AND ($ChangeX % 2))
+    {
+        If($ChangeX -gt 0)
+        {
+            $ChangeX++
+        }
+        Else
+        {
+            $ChangeX--
+        }
+    }
+    
     $ChangeY = (Get-Random -Min ($Weight * -1) -Max $Weight)
+    If($ChangeY -AND ($ChangeY % 2))
+    {
+        If($ChangeX -gt 0)
+        {
+            $ChangeY++
+        }
+        Else
+        {
+            $ChangeY--
+        }
+    }
+
     $Handle = [Win32.Utils]::GetForegroundWindow()
 
     $PHRect = New-Object System.Drawing.Rectangle
     [Void]([Win32.Utils]::GetWindowRect($Handle,[Ref]$PHRect))
 
-    [Win32.Utils]::MoveWindow($Handle,($PHRect.X + $ChangeX),($PHRect.Y + $ChangeY),($PHRect.Width - $PHRect.X + $ChangeX/2),($PHRect.Height - $PHRect.Y + $ChangeY/2),$True)
+    $PHRect.Offset($ChangeX,$ChangeY)
+
+    [Void][Win32.Utils]::MoveWindow($Handle,$PHRect.Location.X,$PHRect.Location.Y,[UInt32]::Parse($PHRect.Size.Width - $PHRect.Location.X + $ChangeX),[UInt32]::Parse($PHRect.Size.Height - $PHRect.Location.Y + $ChangeY),$True)
+
     Sleep -Milliseconds 10
 }
