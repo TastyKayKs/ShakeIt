@@ -17,30 +17,7 @@ While($True)
     $Weight = 15
 
     $ChangeX = (Get-Random -Min ($Weight * -1) -Max $Weight)
-    If($ChangeX -AND ($ChangeX % 2))
-    {
-        If($ChangeX -gt 0)
-        {
-            #$ChangeX++
-        }
-        Else
-        {
-            #$ChangeX--
-        }
-    }
-    
     $ChangeY = (Get-Random -Min ($Weight * -1) -Max $Weight)
-    If($ChangeY -AND ($ChangeY % 2))
-    {
-        If($ChangeY -gt 0)
-        {
-            #$ChangeY++
-        }
-        Else
-        {
-            #$ChangeY--
-        }
-    }
 
     $Handle = [Win32.Utils]::GetForegroundWindow()
 
