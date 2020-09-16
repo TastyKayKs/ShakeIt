@@ -1,15 +1,15 @@
-$code = @'
-    [DllImport("user32.dll")]
-     public static extern IntPtr GetForegroundWindow();
+$Code = @'
+    [DllImport("User32.dll")]
+    public static extern IntPtr GetForegroundWindow();
 
-    [DllImport("user32.dll")]
+    [DllImport("User32.dll")]
     [return: MarshalAs(UnmanagedType.Bool)]
     public static extern bool GetWindowRect(IntPtr hWnd, out System.Drawing.Rectangle lpRect);
 
     [DllImport("User32.dll")]
     public extern static bool MoveWindow(IntPtr handle, int x, int y, int width, int height, bool redraw);
 '@
-Add-Type $code -Name Utils -Namespace Win32 -IgnoreWarnings -ReferencedAssemblies System.Drawing
+Add-Type $Code -Name Utils -Namespace Win32 -IgnoreWarnings -ReferencedAssemblies System.Drawing
 
 Sleep 3
 While($True)
@@ -21,24 +21,24 @@ While($True)
     {
         If($ChangeX -gt 0)
         {
-            $ChangeX++
+            #$ChangeX++
         }
         Else
         {
-            $ChangeX--
+            #$ChangeX--
         }
     }
     
     $ChangeY = (Get-Random -Min ($Weight * -1) -Max $Weight)
     If($ChangeY -AND ($ChangeY % 2))
     {
-        If($ChangeX -gt 0)
+        If($ChangeY -gt 0)
         {
-            $ChangeY++
+            #$ChangeY++
         }
         Else
         {
-            $ChangeY--
+            #$ChangeY--
         }
     }
 
